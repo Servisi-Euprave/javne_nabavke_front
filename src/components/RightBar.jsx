@@ -1,6 +1,7 @@
 import React from 'react'
 import './RightBar.css'
 import { Link } from 'react-router-dom'
+import { ReactSVG } from 'react-svg'
 
 export default function RightBar() {
     return (
@@ -19,7 +20,7 @@ export default function RightBar() {
                     <li>
                         <Link to="/createProcurement" >
                             <span class="icon">
-                                <ion-icon name="home-outline"></ion-icon>
+                                <ReactSVG src="./red.svg"/>
                             </span>
                             <span class="title">Kreiraj nabavku</span>
                         </Link>

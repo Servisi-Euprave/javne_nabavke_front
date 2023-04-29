@@ -1,0 +1,9 @@
+.results{
+    flex: 6;
+    height: calc(100vh - 50px);
+    padding: 30px;
+    position: relative;
+    padding: 20px;
+    display: flex;
+    grid-gap: 30px;
+}

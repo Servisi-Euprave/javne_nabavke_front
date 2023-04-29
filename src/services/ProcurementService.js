@@ -1,5 +1,5 @@
 import axios from "axios";
-const PROCUREMENT_BASE_URL = "http://localhost:8080/api";
+const PROCUREMENT_BASE_URL = "http://localhost:8081/api";
 
 class ProcurementService {
     createProcurement(procurement) {
@@ -9,7 +9,7 @@ class ProcurementService {
         return axios.post(PROCUREMENT_BASE_URL + '/createProcurementPlan', procurementPlan);
     }
     getProcurements() {
-        return axios.get(PROCUREMENT_BASE_URL);
+        return axios.get(PROCUREMENT_BASE_URL + '/getProcurements');
     }
 }
 export default new ProcurementService()
