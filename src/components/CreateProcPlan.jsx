@@ -7,7 +7,7 @@ export default function CreateProcurementPlan(){
     const[quantity, setQuantity] = useState("");
     const handleSubmit = async (e) =>{
         e.preventDefault();    
-        const procurementPlan = { productType:productType, estimatedValue:estimatedValue,quantity:parseInt(quantity)}
+        const procurementPlan = { product_type:productType, estimated_value:estimatedValue,quantity:parseInt(quantity)}
         try{
             const resp = await ProcurementService.createProcurementPlan(procurementPlan);
             

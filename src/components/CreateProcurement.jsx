@@ -1,18 +1,20 @@
 import './CreateProcurement.css'
 import ProcurementService from '../services/ProcurementService';
 import { useState } from 'react'
-
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function CreateProcurement() {
   const[procurementName, setProcurementName] = useState("");
-  const[endDate, setEndDate] = useState("");
   const[description, setDescription] = useState("");
   const[procurementPlanId, setProcurementPlanId] = useState("");
+  const[endDate, setEndDate] = useState(null)
+  
 
   const handleSubmit = async (e) =>{
       e.preventDefault();    
       setProcurementPlanId("didi")
-      const procurement = { procurementName:procurementName, procurementPlanId:procurementPlanId, endDate:endDate, description:description}
+      const procurement = { procurement_name:procurementName, procurement_plan_id:procurementPlanId, end_date:endDate, description:description}
       try{
           const resp = await ProcurementService.createProcurement(procurement);
           
@@ -32,7 +34,8 @@ export default function CreateProcurement() {
             <input type="text" name="procurementName" value={procurementName} onChange={(e) => setProcurementName(e.target.value)} className="field-style field-full align-none" placeholder="Naziv Javne Nabavke" />
             </li>
             <li>
-              <input type="text" name="endDate" value={endDate} onChange={(e) => setEndDate(e.target.value)} className="field-style field-full align-none" placeholder="Zavrsetak javne nabavke" />
+              <DatePicker selected={endDate} isClearable minDate={new Date()} onChange={date => setEndDate(date)}
+              ></DatePicker>
             </li>
             <li class="dropdown">
             <label for="plan" class="plan">Odaberite Plan Javne Nabavke:</label>
