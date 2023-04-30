@@ -54,7 +54,7 @@ export default function RightBar() {
                     </li>
 
                     <li>
-                        <a href="http://localhost:mojport/login?redirect_url=http://localhost:3000/tokenReciever">
+                        <a href="http://localhost:4200/login?service=javne_nabavke&redirect_url=http://localhost:3000/tokenReciever">
                             <span class="icon">
                                 <ion-icon name="lock-closed-outline"></ion-icon>
                             </span>

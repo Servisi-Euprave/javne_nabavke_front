@@ -3,20 +3,21 @@ import ProcurementService from '../services/ProcurementService';
 import { useState } from 'react'
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css";
-
+import { useNavigate } from 'react-router-dom';
 export default function CreateProcurement() {
   const[procurementName, setProcurementName] = useState("");
   const[description, setDescription] = useState("");
   const[procurementPlanId, setProcurementPlanId] = useState("");
   const[endDate, setEndDate] = useState(null)
   
-
+  const navigate = useNavigate();  
   const handleSubmit = async (e) =>{
       e.preventDefault();    
       setProcurementPlanId("didi")
       const procurement = { procurement_name:procurementName, procurement_plan_id:procurementPlanId, end_date:endDate, description:description}
       try{
           const resp = await ProcurementService.createProcurement(procurement);
+          navigate("/");
           
       } catch(error){
           console.log(error.response)

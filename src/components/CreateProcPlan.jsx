@@ -1,16 +1,21 @@
 import { useState } from 'react'
 import ProcurementService from '../services/ProcurementService';
 import './CreateProcPlan.css'
+import { useNavigate } from 'react-router-dom';
 export default function CreateProcurementPlan(){
     const[productType, setProductType] = useState("");
     const[estimatedValue, setEstimatedValue] = useState("");
     const[quantity, setQuantity] = useState("");
+    
+const navigate = useNavigate();  
+
     const handleSubmit = async (e) =>{
         e.preventDefault();    
         const procurementPlan = { product_type:productType, estimated_value:estimatedValue,quantity:parseInt(quantity)}
         try{
             const resp = await ProcurementService.createProcurementPlan(procurementPlan);
-            
+            navigate("/");
+
         } catch(error){
             console.log(error)
         }
