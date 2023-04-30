@@ -20,7 +20,7 @@ function App() {
         <Route path='/results' element={<Results/>}/>
         <Route path="/createProcurement" element={<CreateProcurement/>}/>
         <Route path="/createProcPlan" element={<CreateProcurementPlan/>}/>
-        <Route path="/tokenReciever/:token" element={<TokenReciever/>}/>
+        <Route path="/tokenReciever" element={<TokenReciever/>}/>
     </Routes>
     </div>
     <footer className="homeFooter">

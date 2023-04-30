@@ -63,12 +63,16 @@ export default function RightBar() {
                     </li>
 
                     <li>
-                        <a href="#">
-                            <span class="icon">
-                                <ion-icon name="log-out-outline"></ion-icon>
-                            </span>
+                        <Link
+                        to={'/'}
+                        onClick={()=>{
+                            console.log("loging out");
+                            localStorage.clear();
+                        }}
+                        >
+                            
                             <span class="title">Odjava</span>
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </div>
