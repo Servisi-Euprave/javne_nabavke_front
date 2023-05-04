@@ -63,15 +63,11 @@ export default function RightBar() {
                     </li>
 
                     <li>
-                        <Link
-                        to={'/'}
-                        onClick={()=>{
-                            console.log("loging out");
-                            localStorage.clear();
-                        }}
-                        >
-                            
-                            <span class="title">Odjava</span>
+                        
+                        <Link className='a'
+                            to={'/'}
+                            onClick={()=>{localStorage.clear();}}>
+                                <span class="title">Odjava</span>
                         </Link>
                     </li>
                 </ul>
