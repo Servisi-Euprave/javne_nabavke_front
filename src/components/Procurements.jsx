@@ -55,7 +55,7 @@ const Procurements = () => {
             <tbody>
               {getPageItems().map((proc) => (
                 <tr key={proc.id}>
-                  <td>{proc.procuring_entity}</td>
+                  <td>{proc.procuring_entity_pi_b}</td>
                   <td>{proc.procurement_name}</td>
                   <td>{proc.description}</td>
                   <td>{proc.start_date.split("T")[0]}</td>
