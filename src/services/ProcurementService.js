@@ -12,5 +12,12 @@ class ProcurementService {
     getProcurements() {
         return axios.get(PROCUREMENT_BASE_URL + '/getProcurements');
     }
+    getProcurementAndOffer(){
+        return axios.get(PROCUREMENT_BASE_URL + '/getProcurementAndOfferList');
+    }
+    createOffer(offer){
+        return interceptor.post('/postOffer', offer)
+    }
+
 }
 export default new ProcurementService()

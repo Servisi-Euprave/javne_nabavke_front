@@ -17,7 +17,7 @@
 	border-radius: 10px;
 	border: 6px solid #305A72;
 }
-.createProcurementplan .cardHeader {
+.createOffer .cardHeader {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;

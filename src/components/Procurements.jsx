@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ProcurementService from '../services/ProcurementService';
+import { Link } from 'react-router-dom';
 import './Procurements.css'
 
 
@@ -30,7 +31,11 @@ const Procurements = () => {
       const endIndex = startIndex + itemsPerPage;
       return procurements.slice(startIndex, endIndex);
     };
-  
+    
+    const isLoggedIn = () => {
+      const token = localStorage.getItem('token');
+      return !!token;
+    };
     return (
       <div class="details">
         <div class="recentOrders">
@@ -46,6 +51,7 @@ const Procurements = () => {
                 <td>Opis nabavke</td>
                 <td>Datum objavljivanja</td>
                 <td>Rok za podnosenje</td>
+                <td></td>
               </tr>
             </thead>
   
@@ -57,7 +63,13 @@ const Procurements = () => {
                   <td>{proc.description}</td>
                   <td>{proc.start_date.split("T")[0]}</td>
                   <td>{proc.end_date.split("T")[0]}</td>
-
+                  <td>
+                    {isLoggedIn() ? (
+                      <Link to={`/createOffer/${proc.id}`}>
+                        <button>Postavi ponudu</button>
+                      </Link>
+                    ) : null}
+                  </td>
                 </tr>
               ))}
             </tbody>
