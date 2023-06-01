@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 export default function CreateProcurementPlan() {
   const [productType, setProductType] = useState("");
   const [estimatedValue, setEstimatedValue] = useState("");
-  const [quantity, setQuantity] = useState("");
+  const [quantity, setQuantity] = useState(0);
   const [formErrors, setFormErrors] = useState({})
 
 
@@ -16,7 +16,7 @@ export default function CreateProcurementPlan() {
     if (!validateForm()) {
       return;
     }
-    const procurementPlan = { product_type: productType, estimated_value: estimatedValue, quantity: parseInt(quantity) }
+    const procurementPlan = { product_type: productType, estimated_value: estimatedValue, quantity: quantity }
     try {
       const resp = await ProcurementService.createProcurementPlan(procurementPlan);
       navigate("/");

@@ -27,8 +27,8 @@ class ProcurementService {
     getProcurementOffers(id) {
         return interceptor.get(`/getProcurementOffers/${id}`);
     }
-    declareWinner(id) {
-        return interceptor.put(`/declareWinner/${id}`);
+    declareWinner(procId, id) {
+        return interceptor.put(`/declareWinner/${procId}/${id}`);
     }
 
 }

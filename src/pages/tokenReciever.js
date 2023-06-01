@@ -9,7 +9,7 @@ export default function TokenReciever() {
   useEffect(() => {
     if (token) {
       localStorage.setItem('token', token);
-      navigate('/');
+      window.location.href = '/';
     }
   }, [token, navigate]);
 }

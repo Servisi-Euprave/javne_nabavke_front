@@ -59,12 +59,6 @@ export default function CreateProcurement() {
       errors.description = "Opis Javne Nabavke je obavezan.";
       isValid = false;
     }
-
-    if (!procurementPlanId) {
-      errors.procurementPlanId = "Morate odabrati Plan Javne Nabavke.";
-      isValid = false;
-    }
-
     setFormErrors(errors);
     return isValid;
   };
@@ -91,18 +85,15 @@ export default function CreateProcurement() {
             </label>
             <select
               name="plan"
-              id="language"
+              id="dropdown"
               value={procurementPlanId}
               onChange={(e) => setProcurementPlanId(e.target.value)}>
               {plans.map((plan) => (
                 <option key={plan.procurement_plan_id} value={plan.procurement_plan_id}>
-                  {plan.product_type + " cena: " + plan.estimated_value + " količina: " + plan.quantity} { }
+                  {plan.procurement_plan_id}
                 </option>
               ))}
             </select>
-            {formErrors.procurementPlanId && (
-              <p className="error red-text">{formErrors.procurementPlanId}</p>
-            )}
           </li>
           <li>
             <textarea name="description" value={description} onChange={(e) => setDescription(e.target.value)} className="field-style" placeholder="Opis Javne Nabavke"></textarea>
