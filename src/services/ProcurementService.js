@@ -20,7 +20,13 @@ class ProcurementService {
     }
     getCompanyProcurements() {
         return interceptor.get('/getCompProcurements');
-      }
+    }
+    getProcurementOffers(id) {
+        return interceptor.get(`/getProcurementOffers/${id}`);
+    }
+    declareWinner(id){
+        return interceptor.put(`/declareWinner/${id}`);
+    }
 
 }
 export default new ProcurementService()

@@ -32,6 +32,9 @@ width: 100%;
 text-align: center;
 background-color: rgb(234, 239, 241);
 color: black;
+position: absolute;
+bottom: 0;
+width: 100%;
 }
 .homeFooter p {
 padding-top: 1px;

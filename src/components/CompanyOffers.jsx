@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import ProcurementService from '../services/ProcurementService';
 import { Link } from 'react-router-dom';
-import './CompanyProcurements.css'
+import './CompanyOffers.css'
+import { useParams } from 'react-router-dom';
 
 
-const CompanyProcurements = () => {
-    const [procurements, setProcurements] = useState([]);
+const Offers = () => {
+    const [offers, setOffers] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(10);
+    let { id } = useParams();    
+
   
     const fetchData = async () => {  
-      const { data } = await ProcurementService.getCompanyProcurements();
-      setProcurements(data);
+      const { data } = await ProcurementService.getProcurementOffers(id);
+      setOffers(data);
     };
   
     useEffect(() => {
@@ -23,50 +26,50 @@ const CompanyProcurements = () => {
     };
   
     const getPageCount = () => {
-      return Math.ceil(procurements.length / itemsPerPage);
+      return Math.ceil(offers.length / itemsPerPage);
     };
   
     const getPageItems = () => {
       const startIndex = (currentPage - 1) * itemsPerPage;
       const endIndex = startIndex + itemsPerPage;
-      return procurements.slice(startIndex, endIndex);
+      return offers.slice(startIndex, endIndex);
     };
+    const handleButtonClick = async (offerId) => {
+        try {
+          const response = await ProcurementService.declareWinner(offerId);
+          console.log(response);
+        } catch (error) {
+          console.error(error);
+        }
+      };
     
     return (
       <div class="details">
         <div class="recentOrders">
           <div class="cardHeader">
-            <h2>Kreirane Nabavke</h2>
+            <h2>Pregled ponuda</h2>
           </div>
   
           <table>
             <thead>
               <tr>
-                <td>Naručilac</td>
-                <td>Naziv nabavke</td>
-                <td>Opis nabavke</td>
-                <td>Datum objavljivanja</td>
-                <td>Rok za podnošenje</td>
-                <td>Prikaži ponude</td>
+                <td>Ponuđač</td>
+                <td>Cena</td>
+                &&       <td>Količina prozvoda</td>
+                <td>Datum konkurisanja</td>
+                <td>Odaberi ponudu</td>
               </tr>
             </thead>
   
             <tbody>
-              {getPageItems().map((proc) => (
-                <tr key={proc.id}>
-                  <td>{proc.procuring_entity_pi_b}</td>
-                  <td>{proc.procurement_name}</td>
-                  <td>{proc.description}</td>
-                  <td>{proc.start_date.split("T")[0]}</td>
-                  <td>{proc.end_date.split("T")[0]}</td>
+              {getPageItems().map((offer) => (
+                <tr key={offer.id}>
+                  <td>{offer.bidder_pib}</td>
+                  <td>{offer.price}</td>
+                  <td>{offer.quantity}</td>
+                  <td>{offer.start_date.split("T")[0]}</td>
                   <td>
-                    {proc.winner_id !== ""  ? (
-                      <Link to={`/listOffers/${proc.id}`}>
-                        <button>Prikaži ponude</button>
-                      </Link>
-                    ) : <button>Potražnja je završena</button>
-                  }
-                  </td>
+                  <button onClick={() => handleButtonClick(offer.id)}>Odaberi</button>                  </td>
                 </tr>
               ))}
             </tbody>
@@ -84,4 +87,4 @@ const CompanyProcurements = () => {
     );
   };
   
-  export default CompanyProcurements;
+  export default Offers;

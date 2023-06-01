@@ -19,7 +19,7 @@ export default function CreateOffer(){
     const handleSubmit = async (e) =>{
         e.preventDefault();    
         const value = parseInt(price)
-        const offer = { price:`${currency} ${value}`,bidder_pib: id, term_and_payment:termAndPayment,quantity:parseInt(quantity)}
+        const offer = { price:`${currency} ${value}`,procurement_id: id, term_and_payment:termAndPayment,quantity:parseInt(quantity)}
         try{
             const resp = await ProcurementService.createOffer(offer);
             navigate("/");

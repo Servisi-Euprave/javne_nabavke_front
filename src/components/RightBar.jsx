@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom'
 import { ReactSVG } from 'react-svg'
 
 export default function RightBar() {
+    const isLoggedIn = () => {
+        const token = localStorage.getItem('token');
+        return !!token;
+      };
     return (
         <div class="container">
             <div class="navigation">
@@ -16,26 +20,31 @@ export default function RightBar() {
                             <h4 class="header">PORTAL JAVNIH NABAVKI</h4>
                         </a>
                     </li>
+                    {isLoggedIn() && (
                     <li>
                         <Link to="/companyProfile" >
                             <span class="title">Pregled sopstvenih nabavki</span>
                         </Link>
                     </li>
-
+                    )}
+                    {isLoggedIn() && (
                     <li>
                         <Link to="/createProcurement" >
                             <span class="title">Kreiraj nabavku</span>
                         </Link>
                     </li>
+                    )}
 
+                    {isLoggedIn() && (
                     <li>
-                        <Link to="/createProcPlan" >
-                            <span class="icon">
-                                <ion-icon name="settings-outline"></ion-icon>
-                            </span>
-                            <span class="title">Kreiranje plana javne nabavke</span>
+                        <Link to="/createProcPlan">
+                        <span className="icon">
+                            <ion-icon name="settings-outline"></ion-icon>
+                        </span>
+                        <span className="title">Kreiranje plana javne nabavke</span>
                         </Link>
                     </li>
+                    )}
 
                     <li>
                         <Link to="/results" >
@@ -54,7 +63,7 @@ export default function RightBar() {
                             <span class="title">Javne Nabavke</span>
                         </Link>
                     </li>
-
+                    {!isLoggedIn() && (
                     <li>
                         <a href="http://localhost:4200/login?service=javne_nabavke&redirect_url=http://localhost:3000/tokenReciever">
                             <span class="icon">
@@ -63,15 +72,14 @@ export default function RightBar() {
                             <span class="title">Prijava</span>
                         </a>
                     </li>
-
-                    <li>
-                        
-                        <Link className='a'
-                            to={'/'}
-                            onClick={()=>{localStorage.clear();}}>
-                                <span class="title">Odjava</span>
-                        </Link>
-                    </li>
+                    )}
+                    {isLoggedIn() && (
+                        <li>
+                            <Link className='a' to={'/'} onClick={() => { localStorage.clear(); window.location.reload(); }}>
+                            <span className="title">Odjava</span>
+                            </Link>
+                        </li>
+                    )}
                 </ul>
             </div>
         </div>
