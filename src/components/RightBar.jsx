@@ -16,12 +16,14 @@ export default function RightBar() {
                             <h4 class="header">PORTAL JAVNIH NABAVKI</h4>
                         </a>
                     </li>
+                    <li>
+                        <Link to="/companyProfile" >
+                            <span class="title">Pregled sopstvenih nabavki</span>
+                        </Link>
+                    </li>
 
                     <li>
                         <Link to="/createProcurement" >
-                            <span class="icon">
-                                <ReactSVG src="./red.svg"/>
-                            </span>
                             <span class="title">Kreiraj nabavku</span>
                         </Link>
                     </li>

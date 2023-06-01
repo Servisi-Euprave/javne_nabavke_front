@@ -6,6 +6,8 @@ import RightBar from './components/RightBar';
 import Procurements from './components/Procurements';
 import CreateProcurementPlan from './components/CreateProcPlan';
 import Results from './components/Results';
+import CreateOffer from './components/CreateOffer';
+import CompanyProcurements from  './components/CompanyProcurements';
 
 
 function App() {
@@ -21,6 +23,11 @@ function App() {
         <Route path="/createProcurement" element={<CreateProcurement/>}/>
         <Route path="/createProcPlan" element={<CreateProcurementPlan/>}/>
         <Route path="/tokenReciever" element={<TokenReciever/>}/>
+        <Route path="/createOffer/:id" element={<CreateOffer/>}/>
+        <Route path="/tokenReciever" element={<TokenReciever/>}/>
+        <Route path="/companyProc" element={<CompanyProcurements/>}/>
+
+
     </Routes>
     </div>
     <footer className="homeFooter">

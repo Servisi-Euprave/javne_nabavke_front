@@ -2,8 +2,9 @@ import { useState } from 'react'
 import ProcurementService from '../services/ProcurementService';
 import './CreateOffer.css'
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-export default function createOffer(){
+export default function CreateOffer(){
     const[price, setPrice] = useState("");
     const[termAndPayment, setTermAndPayment] = useState("");
     const[quantity, setQuantity] = useState("");
