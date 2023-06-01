@@ -38,6 +38,7 @@ const Offers = () => {
         try {
           const response = await ProcurementService.declareWinner(offerId);
           console.log(response);
+          window.location.href = '/companyProfile';
         } catch (error) {
           console.error(error);
         }
@@ -55,7 +56,7 @@ const Offers = () => {
               <tr>
                 <td>Ponuđač</td>
                 <td>Cena</td>
-                &&       <td>Količina prozvoda</td>
+                <td>Količina prozvoda</td>
                 <td>Datum konkurisanja</td>
                 <td>Odaberi ponudu</td>
               </tr>
@@ -69,7 +70,8 @@ const Offers = () => {
                   <td>{offer.quantity}</td>
                   <td>{offer.start_date.split("T")[0]}</td>
                   <td>
-                  <button onClick={() => handleButtonClick(offer.id)}>Odaberi</button>                  </td>
+                  <button onClick={() => handleButtonClick(offer.id)}>Odaberi</button>
+                  </td>
                 </tr>
               ))}
             </tbody>

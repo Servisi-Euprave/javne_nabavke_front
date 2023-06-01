@@ -1,6 +1,6 @@
 import './CreateProcurement.css'
 import ProcurementService from '../services/ProcurementService';
-import { useState } from 'react'
+import { useState , useEffect} from 'react'
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from 'react-router-dom';
@@ -8,12 +8,25 @@ export default function CreateProcurement() {
   const[procurementName, setProcurementName] = useState("");
   const[description, setDescription] = useState("");
   const[procurementPlanId, setProcurementPlanId] = useState("");
+  const [plans, setPlans] = useState([]);
   const[endDate, setEndDate] = useState(null)
   
+  useEffect(() => {
+    fetchPlans();
+  }, []);
+
+  const fetchPlans = async () => {
+    try {
+      const response = await ProcurementService.getProcurementPlans();
+      setPlans(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const navigate = useNavigate();  
   const handleSubmit = async (e) =>{
       e.preventDefault();    
-      setProcurementPlanId("didi")
       const procurement = { procurement_name:procurementName, procurement_plan_id:procurementPlanId, end_date:endDate, description:description}
       try{
           const resp = await ProcurementService.createProcurement(procurement);
@@ -38,15 +51,23 @@ export default function CreateProcurement() {
               <DatePicker selected={endDate} isClearable minDate={new Date()} onChange={date => setEndDate(date)}
               ></DatePicker>
             </li>
-            <li class="dropdown">
-            <label for="plan" class="plan">Odaberite Plan Javne Nabavke:</label>
-            <select name="plan" id="language">
-            <option value="Voce">Voce</option>
-            <option value="Povrce">Povrce</option>
-            <option value="Motor" disabled>Motor</option>
-            <option value="Stampac" selected>Stampac</option>
+            <li className="dropdown">
+            <label htmlFor="plan" className="plan">
+              Odaberite Plan Javne Nabavke:
+            </label>
+            <select
+              name="plan"
+              id="language"
+              value={procurementPlanId}
+              onChange={(e) => setProcurementPlanId(e.target.value)}
+            >
+              {plans.map((plan) => (
+                <option key={plan.procurement_plan_id} value={plan.procurement_plan_id}>
+                  {plan.product_type + " " +plan.estimated_value + " " + plan.quantity} {}
+                </option>
+              ))}
             </select>
-            </li>
+          </li>
 
 
             <li>

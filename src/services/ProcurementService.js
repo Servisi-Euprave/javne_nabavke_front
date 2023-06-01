@@ -18,6 +18,9 @@ class ProcurementService {
     createOffer(offer){
         return interceptor.post('/postOffer', offer)
     }
+    getProcurementPlans() {
+        return interceptor.get('/getProcurementPlans');
+    }
     getCompanyProcurements() {
         return interceptor.get('/getCompProcurements');
     }

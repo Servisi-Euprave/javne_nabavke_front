@@ -61,10 +61,11 @@ const CompanyProcurements = () => {
                   <td>{proc.end_date.split("T")[0]}</td>
                   <td>
                     {proc.winner_id !== ""  ? (
-                      <Link to={`/listOffers/${proc.id}`}>
-                        <button>Prikaži ponude</button>
-                      </Link>
-                    ) : <button>Potražnja je završena</button>
+                      <button>Potražnja je završena</button>
+                    ) : <Link to={`/listOffers/${proc.id}`}>
+                
+                      <button>Prikaži ponude</button>
+                  </Link>
                   }
                   </td>
                 </tr>
