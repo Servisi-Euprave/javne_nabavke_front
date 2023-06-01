@@ -71,13 +71,13 @@ export default function CreateOffer() {
               <p className="error red-text">{formErrors.price}</p>
             )}
           </li>
-          
+
           <input type="number" name="quantity" value={quantity} onChange={(e) => setQuantity(e.target.value)} className="field-style field-split align-right" placeholder="Količina" />
           {formErrors.quantity && (
-              <p className="error red-text">{formErrors.quantity}</p>
-            )
+            <p className="error red-text">{formErrors.quantity}</p>
+          )
           }
-       
+
           <li>
             <input type="text" name="termAndPayment" value={termAndPayment} onChange={(e) => setTermAndPayment(e.target.value)} className="field-style field-full align-none" placeholder="Rok i Način plaćanja" />
             {formErrors.termAndPayment && (

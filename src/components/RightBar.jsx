@@ -7,7 +7,7 @@ export default function RightBar() {
     const isLoggedIn = () => {
         const token = localStorage.getItem('token');
         return !!token;
-      };
+    };
     return (
         <div class="container">
             <div class="navigation">
@@ -21,29 +21,29 @@ export default function RightBar() {
                         </a>
                     </li>
                     {isLoggedIn() && (
-                    <li>
-                        <Link to="/companyProfile" >
-                            <span class="title">Pregled sopstvenih nabavki</span>
-                        </Link>
-                    </li>
+                        <li>
+                            <Link to="/companyProfile" >
+                                <span class="title">Pregled sopstvenih nabavki</span>
+                            </Link>
+                        </li>
                     )}
                     {isLoggedIn() && (
-                    <li>
-                        <Link to="/createProcurement" >
-                            <span class="title">Kreiraj nabavku</span>
-                        </Link>
-                    </li>
+                        <li>
+                            <Link to="/createProcurement" >
+                                <span class="title">Kreiraj nabavku</span>
+                            </Link>
+                        </li>
                     )}
 
                     {isLoggedIn() && (
-                    <li>
-                        <Link to="/createProcPlan">
-                        <span className="icon">
-                            <ion-icon name="settings-outline"></ion-icon>
-                        </span>
-                        <span className="title">Kreiranje plana javne nabavke</span>
-                        </Link>
-                    </li>
+                        <li>
+                            <Link to="/createProcPlan">
+                                <span className="icon">
+                                    <ion-icon name="settings-outline"></ion-icon>
+                                </span>
+                                <span className="title">Kreiranje plana javne nabavke</span>
+                            </Link>
+                        </li>
                     )}
 
                     <li>
@@ -64,19 +64,19 @@ export default function RightBar() {
                         </Link>
                     </li>
                     {!isLoggedIn() && (
-                    <li>
-                        <a href="http://localhost:4200/login?service=javne_nabavke&redirect_url=http://localhost:3000/tokenReciever">
-                            <span class="icon">
-                                <ion-icon name="lock-closed-outline"></ion-icon>
-                            </span>
-                            <span class="title">Prijava</span>
-                        </a>
-                    </li>
+                        <li>
+                            <a href="http://localhost:4200/login?service=javne_nabavke&redirect_url=http://localhost:3000/tokenReciever">
+                                <span class="icon">
+                                    <ion-icon name="lock-closed-outline"></ion-icon>
+                                </span>
+                                <span class="title">Prijava</span>
+                            </a>
+                        </li>
                     )}
                     {isLoggedIn() && (
                         <li>
                             <Link className='a' to={'/'} onClick={() => { localStorage.clear(); window.location.reload(); }}>
-                            <span className="title">Odjava</span>
+                                <span className="title">Odjava</span>
                             </Link>
                         </li>
                     )}
@@ -85,13 +85,13 @@ export default function RightBar() {
         </div>
     )
 }
-function CustomLink({to,children, ...props}){
+function CustomLink({ to, children, ...props }) {
     const path = window.location.pathname
 
-    return(
-      <li>
-        <Link to = {to} {...props}>{children}</Link>
-      </li>
+    return (
+        <li>
+            <Link to={to} {...props}>{children}</Link>
+        </li>
 
     )
-  }
+}

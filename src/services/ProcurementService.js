@@ -12,10 +12,10 @@ class ProcurementService {
     getProcurements() {
         return axios.get(PROCUREMENT_BASE_URL + '/getProcurements');
     }
-    getProcurementAndOffer(){
+    getProcurementAndOffer() {
         return axios.get(PROCUREMENT_BASE_URL + '/getProcurementAndOfferList');
     }
-    createOffer(offer){
+    createOffer(offer) {
         return interceptor.post('/postOffer', offer)
     }
     getProcurementPlans() {
@@ -27,7 +27,7 @@ class ProcurementService {
     getProcurementOffers(id) {
         return interceptor.get(`/getProcurementOffers/${id}`);
     }
-    declareWinner(id){
+    declareWinner(id) {
         return interceptor.put(`/declareWinner/${id}`);
     }
 
