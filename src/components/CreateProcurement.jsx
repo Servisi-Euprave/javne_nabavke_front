@@ -80,16 +80,6 @@ export default function CreateProcurement() {
             ></DatePicker>
           </li>
 
-
-          {/*----- OVAJ DEO JE PROBLEM ----- */}
-          {/*Drop down bude popunjen podacima ali selecija podatka ne radi, uvek vraca prazan string u resp bodiju*/}
-                  {/*Ovo bude rezultat
-                  {
-                      "procurement_name": "name",
-                      "procurement_plan_id":"",
-                      "description": "opis",
-                      "end_date": "2023-05-31T00:00:00Z"
-                  }*/}
           <li className="dropdown">
             <label htmlFor="plan" className="plan">
               Odaberite Plan Javne Nabavke:
@@ -101,13 +91,11 @@ export default function CreateProcurement() {
               onChange={(e) => setProcurementPlanId(e.target.value)}>
               {plans.map((plan) => (
                 <option key={plan.procurement_plan_id} value={plan.procurement_plan_id}>
-                  {/*ovde ispisuje proc_plan_id u listi povuce kako trb*/}
                   {plan.procurement_plan_id}
                 </option>
               ))}
             </select>
           </li>
-          {/*----- OVAJ DEO JE PROBLEM ----- */}
 
           <li>
             <textarea name="description" value={description} onChange={(e) => setDescription(e.target.value)} className="field-style" placeholder="Opis Javne Nabavke"></textarea>
