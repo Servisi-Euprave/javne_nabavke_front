@@ -9,6 +9,11 @@ const Procurements = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
 
+  
+  const isLoggedIn = () => {
+    const token = localStorage.getItem('token');
+    return !!token;
+  };
   const fetchData = async () => {
     const { data } = await ProcurementService.getProcurements();
     setProcurements(data);
@@ -32,10 +37,6 @@ const Procurements = () => {
     return procurements.slice(startIndex, endIndex);
   };
 
-  const isLoggedIn = () => {
-    const token = localStorage.getItem('token');
-    return !!token;
-  };
   return (
     <div class="details">
       <div class="recentOrders">
@@ -51,7 +52,10 @@ const Procurements = () => {
               <td>Opis nabavke</td>
               <td>Datum objavljivanja</td>
               <td>Rok za podnosenje</td>
-              <td></td>
+              {isLoggedIn() ? (
+                <td>Postavi ponudu</td>
+              ) : null}
+
             </tr>
           </thead>
 
