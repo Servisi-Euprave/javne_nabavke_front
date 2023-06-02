@@ -30,6 +30,8 @@ class ProcurementService {
     declareWinner(procId, id) {
         return interceptor.put(`/declareWinner/${procId}/${id}`);
     }
-
+    checkifCanCreateOffer(compPib) {
+        return interceptor.get(`/checkIfCanPostOffer/${compPib}`);
+    }
 }
 export default new ProcurementService()

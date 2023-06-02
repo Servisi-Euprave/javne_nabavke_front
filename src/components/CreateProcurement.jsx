@@ -12,9 +12,7 @@ export default function CreateProcurement() {
   const [endDate, setEndDate] = useState(null)
   const [formErrors, setFormErrors] = useState({});
 
-  useEffect(() => {
-    fetchPlans();
-  }, []);
+
 
   const fetchPlans = async () => {
     try {
@@ -24,8 +22,18 @@ export default function CreateProcurement() {
       console.log(error);
     }
   };
+  const handlePlanSelect = (e) => {
+    console.log(e.target.value);
+    setProcurementPlanId(e.target.value);
+  };
+
+  useEffect(() => {
+    fetchPlans();
+  }, []);
+
 
   const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) {
@@ -37,7 +45,7 @@ export default function CreateProcurement() {
       end_date: endDate,
       description: description,
     };
-
+    console.log(JSON.stringify(procurement))
     try {
       const resp = await ProcurementService.createProcurement(procurement);
       navigate("/");
@@ -57,6 +65,10 @@ export default function CreateProcurement() {
 
     if (!description.trim()) {
       errors.description = "Opis Javne Nabavke je obavezan.";
+      isValid = false;
+    }
+    if (procurementPlanId.trim() == "default") {
+      errors.description = "Plan javne nabavke je obavezan.";
       isValid = false;
     }
     setFormErrors(errors);
@@ -87,14 +99,20 @@ export default function CreateProcurement() {
             <select
               name="plan"
               id="dropdown"
-              value={procurementPlanId}
-              onChange={(e) => setProcurementPlanId(e.target.value)}>
+              onChange={handlePlanSelect}>
+              <option value="default">Select a plan</option> {/* Default option */}
               {plans.map((plan) => (
-                <option key={plan.procurement_plan_id} value={plan.procurement_plan_id}>
-                  {plan.procurement_plan_id}
+                <option
+                  key={plan.procurement_plan_id}
+                  value={plan.procurement_plan_id}
+                >
+                  {plan.product_type + " procenjena vrednost: " + plan.estimated_value + " količina: " + plan.quantity}
                 </option>
               ))}
             </select>
+            {formErrors.procurementPlanId && (
+              <p className="error red-text">{formErrors.procurementPlanId}</p>
+            )}
           </li>
 
           <li>
@@ -103,7 +121,7 @@ export default function CreateProcurement() {
               <p className="error red-text">{formErrors.description}</p>)}
           </li>
           <li>
-            <input type="submit" value="Zavrsi" />
+            <input type="submit" value="Završi" />
           </li>
         </ul>
       </form>

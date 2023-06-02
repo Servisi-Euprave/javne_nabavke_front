@@ -23,6 +23,9 @@ export default function RightBar() {
                     {isLoggedIn() && (
                         <li>
                             <Link to="/companyProfile" >
+                                <span className="icon">
+                                    <ion-icon name="settings-outline"></ion-icon>
+                                </span>
                                 <span class="title">Pregled sopstvenih nabavki</span>
                             </Link>
                         </li>
@@ -30,6 +33,9 @@ export default function RightBar() {
                     {isLoggedIn() && (
                         <li>
                             <Link to="/createProcurement" >
+                                <span className="icon">
+                                    <ion-icon name="settings-outline"></ion-icon>
+                                </span>
                                 <span class="title">Kreiraj nabavku</span>
                             </Link>
                         </li>
@@ -75,7 +81,11 @@ export default function RightBar() {
                     )}
                     {isLoggedIn() && (
                         <li>
-                            <Link className='a' to={'/'} onClick={() => { localStorage.clear(); window.location.reload(); }}>
+                            <Link className='a' to={'/'} onClick={() => { localStorage.clear(); window.location.href = '/';
+; }}>
+                                <span className="icon">
+                                    <ion-icon name="settings-outline"></ion-icon>
+                                </span>
                                 <span className="title">Odjava</span>
                             </Link>
                         </li>

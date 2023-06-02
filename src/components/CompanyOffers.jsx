@@ -70,7 +70,7 @@ const Offers = () => {
                   <td>{offer.quantity}</td>
                   <td>{offer.start_date.split("T")[0]}</td>
                   <td>
-                  <button onClick={() => handleButtonClick(offer.id)}>Odaberi</button>
+                  <button className='buttonClass' onClick={() => handleButtonClick(offer.id)}>Odaberi</button>
                   </td>
                 </tr>
               ))}

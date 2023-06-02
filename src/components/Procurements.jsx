@@ -8,12 +8,8 @@ const Procurements = () => {
   const [procurements, setProcurements] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [errorMessage, setErrorMessage] = useState("Ne možete postaviti ponudu za sopstvenu potražnju");
 
-  
-  const isLoggedIn = () => {
-    const token = localStorage.getItem('token');
-    return !!token;
-  };
   const fetchData = async () => {
     const { data } = await ProcurementService.getProcurements();
     setProcurements(data);
@@ -37,6 +33,22 @@ const Procurements = () => {
     return procurements.slice(startIndex, endIndex);
   };
 
+  const isLoggedIn = () => {
+    const token = localStorage.getItem('token');
+    return !!token;
+  };
+
+
+  const handlePostaviPonudu = async (procEntity, procId) => {
+    try {
+      const { data } = await ProcurementService.checkifCanCreateOffer(procEntity);
+      window.location.href = `/createOffer/${procId}`;
+    } catch (error) {
+
+      setErrorMessage('Ne možete postaviti ponudu za sopstvenu potražnju');
+      window.alert(errorMessage);
+    }
+  };
   return (
     <div class="details">
       <div class="recentOrders">
@@ -47,13 +59,13 @@ const Procurements = () => {
         <table>
           <thead>
             <tr>
-              <td>Narucilac</td>
+              <td>Naručilac</td>
               <td>Naziv nabavke</td>
               <td>Opis nabavke</td>
               <td>Datum objavljivanja</td>
-              <td>Rok za podnosenje</td>
+              <td>Rok za podnošenje</td>
               {isLoggedIn() ? (
-                <td>Postavi ponudu</td>
+                <td>Postavi Ponudu</td>
               ) : null}
 
             </tr>
@@ -69,11 +81,11 @@ const Procurements = () => {
                 <td>{proc.end_date.split("T")[0]}</td>
                 <td>
                   {isLoggedIn() ? (
-                    <Link to={`/createOffer/${proc.id}`}>
-                      <button>Postavi ponudu</button>
-                    </Link>
+                    <button className='buttonAddOffer' onClick={() => handlePostaviPonudu(proc.procuring_entity_pi_b, proc.id)} >Postavi ponudu</button>
+
                   ) : null}
                 </td>
+
               </tr>
             ))}
           </tbody>
