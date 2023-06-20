@@ -8,19 +8,30 @@ const CompanyProcurements = () => {
   const [procurements, setProcurements] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [company, setCompany] = useState(null);
 
   const fetchData = async () => {
     const { data } = await ProcurementService.getCompanyProcurements();
     setProcurements(data);
   };
 
+  const fetchDataAboutCompany = async () => {
+    const { data } = await ProcurementService.getInfoAboutCompany();
+    setCompany(data);
+  }
+
+
   useEffect(() => {
+    fetchDataAboutCompany();
     fetchData();
+    console.log(company)
   }, []);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+  console.log("dfffffffff")
+  console.log(company)
 
   const getPageCount = () => {
     return Math.ceil(procurements.length / itemsPerPage);
@@ -37,6 +48,13 @@ const CompanyProcurements = () => {
       <div class="recentOrders">
         <div class="cardHeader">
           <h2>Kreirane Nabavke</h2>
+          <br></br>
+          <p>{company?.naziv}</p>
+          <br></br>
+      <p>{company?.adresaSedista}</p>
+    
+      <p>{company?.mesto}</p>
+          
         </div>
 
         <table>
