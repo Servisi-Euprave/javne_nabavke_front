@@ -33,5 +33,8 @@ class ProcurementService {
     checkifCanCreateOffer(compPib) {
         return interceptor.get(`/checkIfCanPostOffer/${compPib}`);
     }
+    getInfoAboutCompany() {
+        return interceptor.get('/companyProfile');
+    }
 }
 export default new ProcurementService()
